@@ -1,0 +1,27 @@
+.bg-light, .b4 {
+    width: 600px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+}
+
+.table {
+    margin-top: 15px;
+}
+
+.form-control {
+    margin-bottom:10px;
+}
+
+.selecionado {
+    background-color: #BBC9FC;
+}
+
+.negrito {
+    font-weight: bold;
+}
+
+.rodape {
+    text-align: center;
+}
