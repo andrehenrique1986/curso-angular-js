@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="angularjs/angular.js"></script>
+        <script src="angularjs/i18n/angular-locale_pt-br.js"></script>
+        <script src="diretivas/dir-alerta.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css"/>
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"/>
 
@@ -18,17 +20,20 @@
                     {
                         nome: "André",
                         codigo: "0001",
-                        data: new Date()
+                        data: new Date(),
+                        valor: "100"
                     },
                     {
                         nome: "José",
                         codigo: "0002",
-                        data: new Date()
+                        data: new Date(),
+                        valor: "200"
                     },
                     {
                         nome: "Maria",
                         codigo: "0003",
-                        data: new Date()
+                        data: new Date(),
+                        valor: "50"
                     },
                 ];
 
@@ -71,8 +76,10 @@
     
         <div class="bg-light p-4">
             <h3>{{ app }}</h3>
-        
 
+           <div dir-alerta> </div>   
+        
+            <input type="text" ng-model="Buscar" class="form-control" placeholder="Busque aqui"/>
             <table ng-show="clientes.length > 0" class="table">
                 <tr> 
                     <th></th>
@@ -80,13 +87,15 @@
                     <th>Código</th> 
                     <th>Tipo Cliente</th> 
                     <th>Data de Cadastro</th> 
+                    <th>Valor da Compra</th> 
                 </tr>
-                <tr ng-class="{'selecionado negrito': cliente.selecionado}" ng-repeat="cliente in clientes" >
+                <tr ng-class="{'selecionado negrito': cliente.selecionado}" ng-repeat="cliente in clientes | filter: Buscar | orderBy: 'nome' | limitTo:2" >
                     <td><input type="checkbox" ng-model="cliente.selecionado"/></td>
                     <td>{{ cliente.nome | uppercase }}</td>
                     <td>{{ cliente.codigo }}</td>
                     <td>{{ cliente.tipoClientes.tipo }}</td>
                     <td>{{ cliente.data | date: 'dd/MM/yyyy' }}</td>
+                    <td>{{ cliente.valor| currency }}</td>
                 </tr>
 
             </table><!--#End Table-->
